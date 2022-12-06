@@ -15,7 +15,7 @@ vec2 textureLocation(vec3 point) {
 	float u;
 	float v;
 
-	float theta = atan(point.z / point.x);
+	float theta = atan(point.z, point.x);
 	u = theta >= 0.0 ? 1 - (theta / (2.0 * PI)) : -(theta / (2.0 * PI));
 
 	float phi = asin(point.y / 0.5);
