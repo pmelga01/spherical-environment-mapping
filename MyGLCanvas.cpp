@@ -12,7 +12,7 @@ MyGLCanvas::MyGLCanvas(int x, int y, int w, int h, const char* l) : Fl_Gl_Window
 
 	viewAngle = 60;
 	clipNear = 0.01f;
-	clipFar = 20.0f;
+	clipFar = 100.0f;
 	scaleFactor = 1.0f;
 	lightAngle = 0.0f;
 	textureBlend = 0.0f;
@@ -128,6 +128,10 @@ void MyGLCanvas::drawScene() {
 	// TODO: add variable binding
 	glUniform3fv(glGetUniformLocation(envProjID, "myLightPos"), 1, glm::value_ptr(lightPos));
 	glUniform1i(glGetUniformLocation(envProjID, "environMap"), 0);
+	glUniformMatrix4fv(glGetUniformLocation(envProjID, "perspectiveM"), 1, false, glm::value_ptr(perspectiveMatrix));
+	glUniformMatrix4fv(glGetUniformLocation(envProjID, "modelM"), 1, false, glm::value_ptr(modelMatrix));
+	glUniformMatrix4fv(glGetUniformLocation(envProjID, "viewM"), 1, false, glm::value_ptr(viewMatrix));
+
 
 	myEnvironmentPLY->renderVBO(envProjID);
 }
